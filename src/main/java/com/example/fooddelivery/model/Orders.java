@@ -1,26 +1,55 @@
 package com.example.fooddelivery.model;
 
-import java.util.Date;
+import javax.persistence.*;
+import java.sql.Date;
 
+@Entity
+@Table(name="orders")
 public class Orders {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+   // @Column(name="customer_id")
+    //private Integer customerId;
 
-    private Integer o_id;
+    @Column(name="date")
     private Date date;
-    private String c_id;
-    private String pay_type;
 
-    public Orders()
-    {
+    @Column(name="delivery_address")
+    private String deliveryAddress;
 
+    @ManyToOne
+    @JoinColumn(name="customer_id",referencedColumnName = "id")
+    private Customer customer;
+
+
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public Integer getO_id() {
-        return o_id;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public void setO_id(int o_id) {
-        this.o_id = o_id;
+
+
+   /* public Integer getCustomerId() {
+        return customerId;
     }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }*/
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
 
     public Date getDate() {
         return date;
@@ -30,21 +59,21 @@ public class Orders {
         this.date = date;
     }
 
-    public String getC_id() {
-        return c_id;
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
-    public String getPay_type() {
-        return pay_type;
-    }
 
-    public void setPay_type(String pay_type) {
-        this.pay_type = pay_type;
-    }
+
+
+
+
+
 
 
 

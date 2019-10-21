@@ -1,45 +1,58 @@
 package com.example.fooddelivery.model;
 
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+
+@Entity
+@Table(name="orderdetails")
 public class Orderdetails {
-    private Integer order_item_id;
-    private Integer o_id;
-    private String f_id;
+
+    @Id
+    private Integer id;
+    @Column(name="order_id")
+    private Integer orderId;
+    @Column(name="food_id")
+    private Integer foodId;
+    @Column(name="quantity")
     private Integer quantity;
 
-    public Orderdetails()
-    {
 
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getOrder_item_id() {
-        return order_item_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setOrder_item_id(int order_item_id) {
-        this.order_item_id = order_item_id;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public Integer getO_id() {
-        return o_id;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public void setO_id(int o_id) {
-        this.o_id = o_id;
+    public Integer getFoodId() {
+        return foodId;
     }
 
-    public String getF_id() {
-        return f_id;
-    }
-
-    public void setF_id(String f_id) {
-        this.f_id = f_id;
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+
+
+
+
+
+
 }

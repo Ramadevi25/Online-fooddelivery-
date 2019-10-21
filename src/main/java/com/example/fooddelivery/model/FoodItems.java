@@ -1,47 +1,59 @@
 package com.example.fooddelivery.model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name="food_items")
 public class FoodItems {
 
-    private String f_id;
-    private String f_name;
-    private double price;
-    private Integer r_id;
+    @Id
+    private Integer id;
+    @Column(name="name")
+    private String foodName;
+    @Column(name="price")
+    private Double price;
 
-    public String getF_id() {
-        return f_id;
+
+    @ManyToMany(mappedBy = "foodItems")
+    List<Restaurants> restaurants;
+
+
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setF_id(String f_id) {
-        this.f_id = f_id;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getFoodName() {
+        return foodName;
     }
 
-    public String getF_name() {
-        return f_name;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
-    public void setF_name(String f_name) {
-        this.f_name = f_name;
-    }
-
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getR_id() {
-        return r_id;
+    @Override
+    public String toString() {
+        return "FoodItems{" +
+                "id=" + id +
+                ", foodName='" + foodName + '\'' +
+                ", price=" + price +
+                '}';
     }
 
-    public void setR_id(Integer r_id) {
-        this.r_id = r_id;
-    }
 
-    public FoodItems()
-    {
 
-    }
 
 }

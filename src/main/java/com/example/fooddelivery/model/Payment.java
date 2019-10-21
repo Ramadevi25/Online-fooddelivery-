@@ -1,57 +1,45 @@
 package com.example.fooddelivery.model;
 
 public class Payment {
-    private Integer p_id;
-    private Integer c_id;
 
-    public String getNameoncard() {
-        return nameoncard;
+    private Integer id;
+    private Integer orderId;
+    private String payment_type;
+    private Double amount;
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setNameoncard(String nameoncard) {
-        this.nameoncard = nameoncard;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    private String nameoncard;
-    private long card_number;
-    private String expiry_date;
-
-    public Payment()
-    {
-
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public Integer getP_id() {
-        return p_id;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public void setP_id(int p_id) {
-        this.p_id = p_id;
+    public String getPayment_type() {
+        return payment_type;
     }
 
-    public Integer getC_id() {
-        return c_id;
+    public void setPayment_type(String payment_type) {
+        this.payment_type = payment_type;
     }
 
-    public void setC_id(int c_id) {
-        this.c_id = c_id;
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
 
 
-    public long getCard_number() {
-        return card_number;
-    }
-
-    public void setCard_number(long card_number) {
-        this.card_number = card_number;
-    }
-
-    public String getExpiry_date() {
-        return expiry_date;
-    }
-
-    public void setExpiry_date(String expiry_date) {
-        this.expiry_date = expiry_date;
-    }
 }
