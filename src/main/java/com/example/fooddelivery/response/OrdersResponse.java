@@ -1,22 +1,31 @@
 package com.example.fooddelivery.response;
-
+import com.example.fooddelivery.model.Payment;
 import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
 
 public class OrdersResponse {
 
     private Integer id;
     private Integer customerId;
     private Date date;
-    private String deliveryAddress;
+    private Time time;
 
+    public Double getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(Double totalprice) {
+        this.totalprice = totalprice;
+    }
+
+    private Double totalprice;
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public Integer getCustomerId() {
         return customerId;
@@ -34,13 +43,10 @@ public class OrdersResponse {
         this.date = date;
     }
 
-    public String getDeliveryAddress() {
-        return deliveryAddress;
-    }
+    public Time getTime() { return time; }
 
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
+    public void setTime(Time time) { this.time = time; }
+
 
 
 

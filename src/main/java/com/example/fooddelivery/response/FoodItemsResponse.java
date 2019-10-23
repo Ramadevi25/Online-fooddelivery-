@@ -1,6 +1,9 @@
 package com.example.fooddelivery.response;
 
 public class FoodItemsResponse {
+    private Integer id;
+    private String foodName;
+    private Double price;
 
     public String getFoodName() {
         return foodName;
@@ -18,14 +21,6 @@ public class FoodItemsResponse {
         this.price = price;
     }
 
-    public Integer getRestraurantId() {
-        return restraurantId;
-    }
-
-    public void setRestraurantId(Integer restraurantId) {
-        this.restraurantId = restraurantId;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -34,9 +29,4 @@ public class FoodItemsResponse {
         this.id = id;
     }
 
-    private Integer id;
-    private String foodName;
-    private Double price;
-    private Integer restraurantId;
-
-    }
+}

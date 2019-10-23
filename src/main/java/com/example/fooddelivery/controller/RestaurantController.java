@@ -1,6 +1,7 @@
 package com.example.fooddelivery.controller;
 
 import com.example.fooddelivery.model.Restaurants;
+import com.example.fooddelivery.response.FoodItemsResponse;
 import com.example.fooddelivery.response.RestraurantResponse;
 import com.example.fooddelivery.respository.RestaurantRepository;
 import com.example.fooddelivery.service.RestraurantService;
@@ -15,32 +16,25 @@ import java.util.Optional;
 @RestController
 public class RestaurantController {
     @Autowired
-    RestraurantService restraurantService;
+    private RestraurantService restraurantService;
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @GetMapping(value="/restaurants")
     public List<RestraurantResponse> getRestraurantDetails() {
         return restraurantService.fetchrestraurantdetails();
     }
 
-    @GetMapping(value="restaurantId/{restraurant_id}")
-    public RestraurantResponse getRestraurantById(@PathVariable("restraurant_id") Integer id) {
+    @GetMapping(value="restaurant/{restraurantId}")
+    public RestraurantResponse getRestraurantById(@PathVariable("restraurantId") Integer id) {
         return restraurantService.fetchRestraurantById(id);
     }
 
-    @GetMapping("/foodItems/{id}")
-    public String foodItems(@PathVariable("id") Integer id) {
-        Optional<Restaurants> restaurant = restaurantRepository.findById(id);
-        if(restaurant.isPresent()) {
-            restaurant.get().getFoodItems().stream().forEach(System.out::println);
-        }
-        return "Something";
+    @GetMapping("/restaurant/fooditems/{restaurantId}")
+    public List<FoodItemsResponse> foodItems(@PathVariable("restaurantId") Integer id) {
+        return restraurantService.fooddetails(id);
 
     }
-
-
-
 
 }

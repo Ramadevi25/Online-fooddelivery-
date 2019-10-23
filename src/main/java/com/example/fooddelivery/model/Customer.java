@@ -14,6 +14,26 @@ public class Customer {
     @Column(name="name")
     private String name;
 
+    @Column(name="mobile_no")
+    private Long mobileNo;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name="username")
+    private String username;
+
+    @Column(name="password")
+    private String password;
+
+    @OneToMany()
+    @JoinColumn(name="customer_id")
+    List<Orders> orders;
+
+
     public Long getMobileNo() {
         return mobileNo;
     }
@@ -38,21 +58,6 @@ public class Customer {
         this.password = password;
     }
 
-    @Column(name="mobile_no")
-    private Long mobileNo;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name="username")
-    private String username;
-
-    @Column(name="password")
-    private String password;
-
     public List<Orders> getOrders() {
         return orders;
     }
@@ -60,10 +65,6 @@ public class Customer {
     public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
-
-    @OneToMany(mappedBy = "customer")
-    List<Orders> orders;
-
 
     public Integer getId() { return id; }
 
@@ -89,4 +90,17 @@ public class Customer {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", mobileNo=" + mobileNo +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", orders=" + orders +
+                '}';
+    }
 }

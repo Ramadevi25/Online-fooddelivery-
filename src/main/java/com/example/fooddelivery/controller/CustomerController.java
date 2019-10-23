@@ -1,9 +1,8 @@
 package com.example.fooddelivery.controller;
 
-import com.example.fooddelivery.response.CustomerResponse;
-import com.example.fooddelivery.response.FoodItemsResponse;
-import com.example.fooddelivery.response.OrdersResponse;
-import com.example.fooddelivery.response.RestraurantResponse;
+import com.example.fooddelivery.model.Customer;
+import com.example.fooddelivery.request.CustomerRequest;
+import com.example.fooddelivery.response.*;
 import com.example.fooddelivery.respository.CustomerRespository;
 import com.example.fooddelivery.service.CustomerService;
 import com.example.fooddelivery.service.FoodItemsService;
@@ -18,35 +17,42 @@ import java.util.List;
 @RequestMapping(value="/customers")
 public class CustomerController {
 
-    @Autowired
-    CustomerRespository customerrespository;
-
-    @Autowired
-    CustomerService customerservice;
-
-    @Autowired
-    RestraurantService restraurantService;
-
 
 
     @Autowired
-    OrdersService ordersService;
+    private CustomerService customerservice;
+
+    @Autowired
+    private RestraurantService restraurantService;
+
+    @Autowired
+    private OrdersService ordersService;
 
     @GetMapping()
-    public List<CustomerResponse> getCustomerDetails() {
+    public List<CustomerDetailResponse> getCustomerDetails() {
         return customerservice.fetchCustomersDetails();
     }
 
-    @GetMapping(value="/{id}")
-    public CustomerResponse getCustomerById(@PathVariable("id") Integer id) {
+    @GetMapping(value="/{customerId}")
+    public CustomerDetailResponse getCustomerById(@PathVariable("customerId") Integer id) {
         return customerservice.fetchCustomerById(id);
     }
-    //get orderdetails using customerid
-    @GetMapping(value="/{id}")
-    public CustomerResponse getCustomerOrderDetail(@PathVariable("id") Integer id) {
-        return customerservice.fetchCustomerOrderDetails(id);
+
+    @GetMapping(value="orderdetail/{customerId}")
+    public CustomerResponse getCustomerOrderDetail(@PathVariable("customerId") Integer customerId) {
+        return customerservice.fetchCustomerOrderDetails(customerId);
     }
 
+    @GetMapping(value="/customerId/{customerId}")
+    public CustomerDetailResponse getOrderDetail(@PathVariable("customerId") Integer customerId)
+    {
+        return customerservice.fetchOrder(customerId);
+    }
+    @PostMapping(value="/addCustomer")
+    public void addCustomer(@RequestBody CustomerRequest customerRequest)
+    {
+         customerservice.addCustomerDetails(customerRequest);
+    }
 
 
 

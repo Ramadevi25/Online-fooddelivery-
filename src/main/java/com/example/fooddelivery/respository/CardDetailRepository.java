@@ -1,12 +1,12 @@
 package com.example.fooddelivery.respository;
 
-import com.example.fooddelivery.model.FoodItems;
+import com.example.fooddelivery.model.CardDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface FoodItemsRespository extends JpaRepository<FoodItems,Integer> {
-    List<FoodItems> findByFoodName(String foodName);
+public interface CardDetailRepository extends JpaRepository<CardDetails,Integer> {
+    List<CardDetails> findByCustomerId(Integer customerId);
 }

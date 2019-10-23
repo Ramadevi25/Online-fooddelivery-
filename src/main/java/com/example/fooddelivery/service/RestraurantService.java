@@ -1,6 +1,8 @@
 package com.example.fooddelivery.service;
 
+import com.example.fooddelivery.model.FoodItems;
 import com.example.fooddelivery.model.Restaurants;
+import com.example.fooddelivery.response.FoodItemsResponse;
 import com.example.fooddelivery.response.RestraurantResponse;
 import com.example.fooddelivery.respository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class RestraurantService {
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     public RestraurantResponse fetchRestraurantById(Integer id) {
         Restaurants restraurants= restaurantRepository.findById(id).get();
@@ -39,5 +42,21 @@ public class RestraurantService {
         return restraurantResponse;
         }
 
-    }
+    public List<FoodItemsResponse> fooddetails(Integer id) {
+        Optional<Restaurants> restaurant = restaurantRepository.findById(id);
+        List<FoodItems> restraurantResponses=restaurant.get().getFoodItems();
+        List<FoodItemsResponse> foodItemsResponsesList=new ArrayList<>();
+        restraurantResponses.forEach(foodItems -> {
+            FoodItemsResponse foodItemsResponse=new FoodItemsResponse();
+                foodItemsResponse.setId(foodItems.getId());
+                foodItemsResponse.setFoodName(foodItems.getFoodName());
+                foodItemsResponse.setPrice(foodItems.getPrice());
+                foodItemsResponsesList.add(foodItemsResponse);
+
+            });
+        return foodItemsResponsesList;
+        }
+
+
+}
 

@@ -1,11 +1,15 @@
 package com.example.fooddelivery.response;
 
+import java.util.List;
+
 public class CustomerResponse {
 
     private Integer id;
     private String name;
-    private String username;
-    private String password;
+    private Long mobileNo;
+    private String email;
+
+    List<OrdersResponse> orderdetails;
 
     public Long getMobileNo() {
         return mobileNo;
@@ -13,27 +17,6 @@ public class CustomerResponse {
 
     public void setMobileNo(Long mobileNo) {
         this.mobileNo = mobileNo;
-    }
-
-    private Long mobileNo;
-    private String email;
-    private String address;
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
 
@@ -45,7 +28,6 @@ public class CustomerResponse {
 
     public void setName(String name) { this.name = name; }
 
-
     public String getEmail() {
         return email;
     }
@@ -54,12 +36,13 @@ public class CustomerResponse {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+
+
+    public List<OrdersResponse> getOrderdetails() {
+        return orderdetails;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setOrderdetails(List<OrdersResponse> orderdetails) {
+        this.orderdetails = orderdetails;
     }
-
 }

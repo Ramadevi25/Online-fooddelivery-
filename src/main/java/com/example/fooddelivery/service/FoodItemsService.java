@@ -1,18 +1,18 @@
 package com.example.fooddelivery.service;
 
 import com.example.fooddelivery.model.FoodItems;
+import com.example.fooddelivery.request.FoodItemsRequest;
 import com.example.fooddelivery.response.FoodItemsResponse;
 import com.example.fooddelivery.respository.FoodItemsRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class FoodItemsService {
     @Autowired
-    FoodItemsRespository foodItemsRespository;
+    private FoodItemsRespository foodItemsRespository;
 
     public List<FoodItemsResponse> fetchFoodItems() {
         List<FoodItems> foodItemsList=foodItemsRespository.findAll();
@@ -24,15 +24,14 @@ public class FoodItemsService {
         return foodItems;
     }
 
-   public List<FoodItemsResponse> fetchFoodByName(String food_name) {
-        List<FoodItems> foodItem = foodItemsRespository.findByFoodName(food_name);
-        List<FoodItemsResponse> fooditem = new ArrayList<FoodItemsResponse>();
-
-            foodItem.forEach(fooditemsList -> {
+   public List<FoodItemsResponse> fetchFoodByName(String foodName) {
+        List<FoodItems> foodItem = foodItemsRespository.findByFoodName(foodName);
+        List<FoodItemsResponse> foodItemsResponses = new ArrayList<FoodItemsResponse>();
+        foodItem.forEach(fooditemsList -> {
                 FoodItemsResponse foodItemsResponse=getFoodItems(fooditemsList);
-                fooditem.add(foodItemsResponse);
+                foodItemsResponses.add(foodItemsResponse);
             });
-            return fooditem;
+            return foodItemsResponses;
         }
         public FoodItemsResponse getFoodItems(FoodItems foodItems)
         {
@@ -40,9 +39,15 @@ public class FoodItemsService {
             foodItemsResponse.setId(foodItems.getId());
             foodItemsResponse.setFoodName(foodItems.getFoodName());
             foodItemsResponse.setPrice(foodItems.getPrice());
-            //foodItemsResponse.setRestraurantId(foodItems.getRestaurantId());
             return foodItemsResponse;
         }
 
+    public void insertFooditems(FoodItemsRequest foodItemsRequest) {
+        FoodItems foodItems=new FoodItems();
+        foodItems.setId(foodItemsRequest.getId());
+        foodItems.setFoodName(foodItemsRequest.getFoodName());
+        foodItems.setPrice(foodItemsRequest.getPrice());
+        foodItemsRespository.save(foodItems);
     }
+}
 

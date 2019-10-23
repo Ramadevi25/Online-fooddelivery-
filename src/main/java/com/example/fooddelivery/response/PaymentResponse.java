@@ -1,23 +1,11 @@
-package com.example.fooddelivery.model;
+package com.example.fooddelivery.response;
 
-import javax.persistence.*;
+import java.util.List;
 
-@Entity
-@Table(name="payment")
-public class Payment {
-
-    @Id
+public class PaymentResponse {
     private Integer id;
-
-    @Column(name="order_id")
     private Integer orderId;
-
-    @Column(name="payment_type")
     private String paymentType;
-
-    @Column(name="amount")
-    private Double amount;
-
 
     public Integer getId() {
         return id;
@@ -26,8 +14,7 @@ public class Payment {
     public void setId(Integer id) {
         this.id = id;
     }
-
-   public Integer getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
@@ -50,4 +37,6 @@ public class Payment {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+    private Double amount;
 }

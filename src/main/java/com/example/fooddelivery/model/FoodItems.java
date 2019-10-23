@@ -8,18 +8,15 @@ import java.util.List;
 public class FoodItems {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name="name")
     private String foodName;
     @Column(name="price")
     private Double price;
 
-
     @ManyToMany(mappedBy = "foodItems")
     List<Restaurants> restaurants;
-
-
-
 
     public Integer getId() {
         return id;
@@ -28,6 +25,7 @@ public class FoodItems {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getFoodName() {
         return foodName;
     }
@@ -52,8 +50,5 @@ public class FoodItems {
                 ", price=" + price +
                 '}';
     }
-
-
-
 
 }

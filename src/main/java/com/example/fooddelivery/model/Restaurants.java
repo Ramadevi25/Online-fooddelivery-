@@ -1,6 +1,4 @@
 package com.example.fooddelivery.model;
-
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,19 +12,10 @@ public class Restaurants {
     @Column(name="name")
     private String name;
 
-    public List<FoodItems> getFoodItems() {
-        return foodItems;
-    }
-
-    public void setFoodItems(List<FoodItems> foodItems) {
-        this.foodItems = foodItems;
-    }
-
     @ManyToMany
     @JoinTable(name = "restaurant_food_relation",joinColumns = @JoinColumn(name = "restaurant_id"),
     inverseJoinColumns = @JoinColumn(name = "food_id"))
     List<FoodItems> foodItems;
-
 
     public Integer getId() {
         return id;
@@ -44,10 +33,12 @@ public class Restaurants {
         this.name = name;
     }
 
+    public List<FoodItems> getFoodItems() {
+        return foodItems;
+    }
 
-
-
-
-
+    public void setFoodItems(List<FoodItems> foodItems) {
+        this.foodItems = foodItems;
+    }
 
 }

@@ -1,12 +1,43 @@
 package com.example.fooddelivery.model;
 
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name="cart")
 public class Cart {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer customer_id;
-    private Integer food_id;
+
+    @Column(name="customer_id")
+    private Integer customerId;
+
+    @Column(name="food_id")
+    private Integer foodId;
+
+    @OneToMany
+    @JoinColumn(name="id")
+    List<FoodItems> foodItemsList;
+
+    public List<FoodItems> getFoodItemsList() { return foodItemsList; }
+
+    public void setFoodItemsList(List<FoodItems> foodItemsList) { this.foodItemsList = foodItemsList; }
+
+    public Integer getCustomerId() { return customerId; }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
+    }
 
     public Integer getId() {
         return id;
@@ -14,22 +45,6 @@ public class Cart {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(Integer customer_id) {
-        this.customer_id = customer_id;
-    }
-
-    public Integer getFood_id() {
-        return food_id;
-    }
-
-    public void setFood_id(Integer food_id) {
-        this.food_id = food_id;
     }
 
 }
