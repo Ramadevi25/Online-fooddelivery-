@@ -12,8 +12,8 @@ public class CardDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="customer_id")
-    private Integer customerId;
+    //@Column(name="customer_id")
+    //private Customer customerId;
 
     @Column(name = "name_on_card")
     private String nameOnCard;
@@ -24,6 +24,17 @@ public class CardDetails {
     @Column(name="expiry_date")
     private Date expiryDate;
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="customer_id",referencedColumnName = "id")
+    private Customer customer;
 
     public Integer getId() {
         return id;
@@ -33,13 +44,7 @@ public class CardDetails {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
 
     public String getNameOnCard() {
         return nameOnCard;

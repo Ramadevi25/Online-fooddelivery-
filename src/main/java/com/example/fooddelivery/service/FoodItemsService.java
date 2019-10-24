@@ -45,7 +45,7 @@ public class FoodItemsService {
     public void insertFooditems(FoodItemsRequest foodItemsRequest) {
         FoodItems foodItems=new FoodItems();
         foodItems.setId(foodItemsRequest.getId());
-        foodItems.setFoodName(foodItemsRequest.getFoodName());
+        foodItems.setFoodName(foodItemsRequest.getName());
         foodItems.setPrice(foodItemsRequest.getPrice());
         foodItemsRespository.save(foodItems);
     }

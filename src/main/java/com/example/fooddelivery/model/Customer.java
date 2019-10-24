@@ -33,6 +33,17 @@ public class Customer {
     @JoinColumn(name="customer_id")
     List<Orders> orders;
 
+    public List<CardDetails> getCarddetail() {
+        return carddetail;
+    }
+
+    public void setCarddetail(List<CardDetails> carddetail) {
+        this.carddetail = carddetail;
+    }
+
+    @OneToMany(mappedBy = "customer")
+    List<CardDetails> carddetail;
+
 
     public Long getMobileNo() {
         return mobileNo;

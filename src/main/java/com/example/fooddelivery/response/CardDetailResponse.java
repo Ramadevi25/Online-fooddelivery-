@@ -2,7 +2,6 @@ package com.example.fooddelivery.response;
 
 import java.sql.Date;
 
-
 public class CardDetailResponse {
     private Integer customerId;
     private String nameOnCard;

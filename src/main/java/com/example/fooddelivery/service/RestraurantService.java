@@ -58,5 +58,15 @@ public class RestraurantService {
         }
 
 
+    public void addRestaurantDetail(RestraurantResponse restraurantResponse) {
+        Restaurants restaurants=new Restaurants();
+        restaurants.setId(restraurantResponse.getId());
+        restaurants.setName(restraurantResponse.getName());
+        restaurantRepository.save(restaurants);
+    }
+
+    public void deleteRestaurantId(Integer id) {
+        restaurantRepository.deleteById(id);
+    }
 }
 

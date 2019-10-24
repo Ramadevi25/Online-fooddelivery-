@@ -27,6 +27,6 @@ public class FoodItemsController {
     @PostMapping(value="/addFoodItem")
     public void addFoodItems(@RequestBody FoodItemsRequest foodItemsRequest){
         foodItemsService.insertFooditems(foodItemsRequest);
-
     }
+
 }

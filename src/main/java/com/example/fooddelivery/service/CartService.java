@@ -1,5 +1,6 @@
 package com.example.fooddelivery.service;
 
+import com.example.fooddelivery.model.CardDetails;
 import com.example.fooddelivery.model.Cart;
 import com.example.fooddelivery.model.FoodItems;
 import com.example.fooddelivery.response.CartResponse;
@@ -63,5 +64,13 @@ public class CartService {
         cartResponse.setCustomerId(cart.getCustomerId());
         return cartResponse;
 
+    }
+    public void deleteCartDetails() {
+        cartRepository.deleteAll();
+    }
+
+    public void deleteFoodItem(Integer id) {
+        Cart cart=cartRepository.findByfoodId(id);
+        cartRepository.delete(cart);
     }
 }

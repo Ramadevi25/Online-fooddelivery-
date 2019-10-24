@@ -6,12 +6,8 @@ import com.example.fooddelivery.response.RestraurantResponse;
 import com.example.fooddelivery.respository.RestaurantRepository;
 import com.example.fooddelivery.service.RestraurantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class RestaurantController {
@@ -34,7 +30,18 @@ public class RestaurantController {
     @GetMapping("/restaurant/fooditems/{restaurantId}")
     public List<FoodItemsResponse> foodItems(@PathVariable("restaurantId") Integer id) {
         return restraurantService.fooddetails(id);
-
     }
+    public void addRestaurantDetails(@RequestBody RestraurantResponse restraurantResponse)
+    {
+        restraurantService.addRestaurantDetail(restraurantResponse);
+    }
+
+    @DeleteMapping("/{restaurantId}")
+    public void removeRestaurant(@PathVariable("restaurantId")Integer id)
+    {
+        restraurantService.deleteRestaurantId(id);
+    }
+
+
 
 }

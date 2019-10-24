@@ -2,6 +2,8 @@ package com.example.fooddelivery.request;
 
 public class FoodItemsRequest {
     private Integer id;
+    private String name;
+    private Double price;
 
     public String getName() {
         return name;
@@ -11,8 +13,7 @@ public class FoodItemsRequest {
         this.name = name;
     }
 
-    private String name;
-    private Double price;
+
 
     public Integer getId() {
         return id;
