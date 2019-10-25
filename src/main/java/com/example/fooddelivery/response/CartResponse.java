@@ -7,6 +7,8 @@ import java.util.List;
 public class CartResponse {
     private Integer customerId;
 
+
+
     List<FoodItemsResponse> foodDetails;
 
     public List<FoodItemsResponse> getFoodDetails() {

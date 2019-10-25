@@ -33,7 +33,7 @@ public class CardDetails {
     }
 
     @ManyToOne()
-    @JoinColumn(name="customer_id",referencedColumnName = "id")
+    @JoinColumn(name="customer_id")
     private Customer customer;
 
     public Integer getId() {

@@ -55,7 +55,7 @@ public class CustomerService {
         return customer;
     }
 
-    public CustomerResponse fetchCustomerOrderDetails(Integer id) {
+    public CustomerResponse fetchCustomerOrders(Integer id) {
         Customer customer=customerRespository.findById(id).get();
         CustomerResponse customerResponse=new CustomerResponse();
         customerResponse.setId(customer.getId());
@@ -69,21 +69,14 @@ public class CustomerService {
             OrdersResponse ordersResponse=new OrdersResponse();
             ordersResponse.setId(orders.getId());
             ordersResponse.setDate(orders.getDate());
-            //ordersResponse.setCustomerId(orders.getCustomerId());
+            ordersResponse.setTotalprice(orders.getTotalprice());
             ordersResponses.add(ordersResponse);
         });
         customerResponse.setOrderdetails(ordersResponses);
     return customerResponse;
     }
 
-    public CustomerDetailResponse fetchOrder(Integer customerId) {
-        Optional<Customer> customer=customerRespository.findById(customerId);
-        CustomerDetailResponse customerResponse=new CustomerDetailResponse();
-        customerResponse.setId(customer.get().getId());
-        customerResponse.setName(customer.get().getName());
-        customerResponse.setEmail(customer.get().getEmail());
-        return customerResponse;
-    }
+
     public ResponseEntity addCustomerDetails(CustomerRequest customerRequest) {
         Customer customer=new Customer();
         customer.setName(customerRequest.getName());

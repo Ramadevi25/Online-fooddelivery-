@@ -1,12 +1,13 @@
 package com.example.fooddelivery.service;
 
+import com.example.fooddelivery.model.Customer;
 import com.example.fooddelivery.model.Orders;
-import com.example.fooddelivery.model.Payment;
+import com.example.fooddelivery.request.OrderdetailRequest;
 import com.example.fooddelivery.response.OrdersResponse;
-import com.example.fooddelivery.response.PaymentResponse;
+import com.example.fooddelivery.respository.CustomerRespository;
+import com.example.fooddelivery.respository.OrderDetailsRespository;
 import com.example.fooddelivery.respository.OrdersRespository;
 import com.example.fooddelivery.respository.PaymentRepository;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,12 @@ public class OrdersService {
 
     @Autowired
     private PaymentRepository paymentRepository;
+
+    @Autowired
+    private CustomerRespository customerRespository;
+
+    @Autowired
+    private OrderDetailsRespository orderDetailsRespository;
 
     public List<OrdersResponse> fetchOrders() {
         List<Orders> OrdersDetails=ordersRespository.findAll();
@@ -42,8 +49,6 @@ public class OrdersService {
         OrdersResponse ordersResponse=new OrdersResponse();
         ordersResponse.setId(orders.getId());
         ordersResponse.setDate(orders.getDate());
-        ordersResponse.setCustomerId(orders.getCustomerId());
-       // ordersResponse.setPaymentType(orders.getPaymentType());
         ordersResponse.setTotalprice(orders.getTotalprice());
         return ordersResponse;
 
@@ -55,21 +60,7 @@ public class OrdersService {
         OrdersResponse ordersResponse=new OrdersResponse();
         ordersResponse.setId(orders.getId());
         ordersResponse.setDate(orders.getDate());
-        //ordersResponse.setPaymentType(orders.getPaymentType());
         ordersResponse.setTotalprice(orders.getTotalprice());
-        ordersResponse.setCustomerId(orders.getCustomerId());
-//        List<Payment> paymentList = orders.getPayment();
-//        List<PaymentResponse> paymentResponseList=new ArrayList<>();
-//        paymentList.forEach(payment -> {
-//            PaymentResponse paymentResponse=new PaymentResponse();
-//            paymentResponse.setId(payment.getId());
-//            paymentResponse.setOrderId(payment.getOrderId());
-//            paymentResponse.setAmount(payment.getAmount());
-//            paymentResponse.setPaymentType(payment.getPaymentType());
-//            paymentResponseList.add(paymentResponse);
-//
-//        });
-//        ordersResponse.setPaymentdetail(paymentResponseList);
         return ordersResponse;
     }
 
@@ -79,12 +70,34 @@ public class OrdersService {
         orders.forEach(order -> {
             OrdersResponse ordersResponse=new OrdersResponse();
             ordersResponse.setId(order.getId());
-            ordersResponse.setCustomerId(order.getCustomerId());
             ordersResponse.setTotalprice(order.getTotalprice());
             ordersResponse.setDate(order.getDate());
             ordersResponseList.add(ordersResponse);
         });
         return ordersResponseList;
     }
+
+    public String addorder(OrdersResponse ordersResponse) {
+        {
+            Orders orders=new Orders();
+            orders.setCustomer(ordersResponse.getCustomerId());
+            orders.setDate(ordersResponse.getDate());
+            orders.setTime(ordersResponse.getTime());
+            orders.setTotalprice(ordersResponse.getTotalprice());
+            ordersRespository.save(orders);
+
+            OrderdetailRequest orderdetailRequest=new OrderdetailRequest();
+            orderdetailRequest.setOrderId(orders.getId());
+            //orderdetailRequest.setFoodId();
+            return "order added";
+
+        }
+
+
+
+
+    }
+
+
 
 }

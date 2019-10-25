@@ -29,21 +29,11 @@ public class Customer {
     @Column(name="password")
     private String password;
 
-    @OneToMany()
-    @JoinColumn(name="customer_id")
-    List<Orders> orders;
-
-    public List<CardDetails> getCarddetail() {
-        return carddetail;
-    }
-
-    public void setCarddetail(List<CardDetails> carddetail) {
-        this.carddetail = carddetail;
-    }
-
     @OneToMany(mappedBy = "customer")
     List<CardDetails> carddetail;
 
+    @OneToMany(mappedBy = "customer")
+    List<Orders> orders;
 
     public Long getMobileNo() {
         return mobileNo;
@@ -101,6 +91,15 @@ public class Customer {
         this.address = address;
     }
 
+    public List<CardDetails> getCarddetail() {
+        return carddetail;
+    }
+
+    public void setCarddetail(List<CardDetails> carddetail) {
+        this.carddetail = carddetail;
+    }
+
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -111,7 +110,7 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", orders=" + orders +
+
                 '}';
     }
 }

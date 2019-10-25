@@ -1,11 +1,25 @@
 package com.example.fooddelivery.response;
 
+import com.example.fooddelivery.model.Orders;
+
 import java.util.List;
 
 public class PaymentResponse {
+
     private Integer id;
-    private Integer orderId;
+    private Orders orderId;
     private String paymentType;
+    private Double amount;
+
+    public Orders getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Orders orderId) {
+        this.orderId = orderId;
+    }
+
+
 
     public Integer getId() {
         return id;
@@ -14,13 +28,7 @@ public class PaymentResponse {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Integer getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
 
     public String getPaymentType() {
         return paymentType;
@@ -38,5 +46,5 @@ public class PaymentResponse {
         this.amount = amount;
     }
 
-    private Double amount;
+
 }

@@ -1,4 +1,5 @@
 package com.example.fooddelivery.response;
+import com.example.fooddelivery.model.Customer;
 import com.example.fooddelivery.model.Payment;
 import java.sql.Date;
 import java.sql.Time;
@@ -7,7 +8,16 @@ import java.util.List;
 public class OrdersResponse {
 
     private Integer id;
-    private Integer customerId;
+
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Customer getCustomerId() {
+        return customerId;
+    }
+
+    private Customer customerId;
     private Date date;
     private Time time;
 
@@ -27,13 +37,6 @@ public class OrdersResponse {
 
     public void setId(Integer id) { this.id = id; }
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
 
     public Date getDate() {
         return date;

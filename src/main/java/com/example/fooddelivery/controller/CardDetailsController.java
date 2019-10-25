@@ -5,12 +5,12 @@ import com.example.fooddelivery.service.CardDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/carddetails")
 public class CardDetailsController {
+
     @Autowired
     private CardDetailService cardDetailService;
 

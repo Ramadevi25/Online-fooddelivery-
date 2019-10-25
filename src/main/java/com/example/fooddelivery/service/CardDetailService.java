@@ -23,22 +23,43 @@ public class CardDetailService {
     @Autowired
     private CustomerRespository customerRespository;
 
-    public List<CardDetailResponse> fetchCardDetails(Integer customerId) {
+    /*public List<CardDetailResponse> fetchCardDetails(Integer customerId) {
         List<CardDetails> cardDetails=cardDetailRepository.findByCustomerId(customerId);
+        System.out.println(cardDetails);
+
         CardDetailResponse cardDetailResponse=new CardDetailResponse();
         List<CardDetailResponse> cardDetailResponses=new ArrayList<>();
         cardDetails.forEach(cardDetail -> {
             CardDetailResponse cardDetailResponse1=getCardDetails(cardDetail);
             cardDetailResponses.add(cardDetailResponse);
         });
+        return cardDetailResponses;}
+    }*/
+
+public List<CardDetailResponse> fetchCardDetails(Integer customerId) {
+    Optional<Customer> customer=customerRespository.findById(customerId);
+    if(customer.isPresent()){
+
+        List<CardDetails> cardDetailResponse=cardDetailRepository.findByCustomerId(customer.get().getId());
+
+        System.out.println(cardDetailResponse);
+        List<CardDetailResponse> cardDetailResponses=new ArrayList<>();
+
+        cardDetailResponse.forEach(cardDetail -> {
+            CardDetailResponse cardDetailResponse1=getCardDetails(cardDetail);
+            cardDetailResponses.add(cardDetailResponse1);
+        });
         return cardDetailResponses;
     }
+    return null;
+}
+
     public CardDetailResponse getCardDetails(CardDetails cardDetails)
     {
         CardDetailResponse cardDetailResponse=new CardDetailResponse();
         cardDetailResponse.setId(cardDetails.getId());
         cardDetailResponse.setCardNo(cardDetails.getCardNo());
-        //cardDetailResponse.setCustomerId(cardDetails.getCustomerId());
+        //cardDetailResponse.
         cardDetailResponse.setExpiryDate(cardDetails.getExpiryDate());
         cardDetailResponse.setNameOnCard(cardDetails.getNameOnCard());
         return cardDetailResponse;
@@ -49,8 +70,8 @@ public class CardDetailService {
         if(optionalCustomer.isPresent()) {
             CardDetails cardDetails = new CardDetails();
             cardDetails.setCustomer(optionalCustomer.get());
-            //cardDetails.setCustomerId(cardDetailResponse.getCustomerId());
             cardDetails.setCardNo(cardDetailResponse.getCardNo());
+            cardDetails.setCustomer(optionalCustomer.get());
             cardDetails.setNameOnCard(cardDetailResponse.getNameOnCard());
             cardDetails.setExpiryDate(cardDetailResponse.getExpiryDate());
 

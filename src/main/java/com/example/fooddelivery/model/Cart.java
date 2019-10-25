@@ -1,6 +1,7 @@
 package com.example.fooddelivery.model;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Entity
@@ -11,11 +12,30 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="customer_id")
-    private Integer customerId;
-
     @Column(name="food_id")
     private Integer foodId;
+
+    @Column(name="restaurant_id")
+    private Integer restaurantId;
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    @Column
+    private Integer customerId;
+
+    public Integer getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Integer restaurantId) {
+        this.restaurantId = restaurantId;
+    }
 
     @OneToMany
     @JoinColumn(name="id")
@@ -24,12 +44,6 @@ public class Cart {
     public List<FoodItems> getFoodItemsList() { return foodItemsList; }
 
     public void setFoodItemsList(List<FoodItems> foodItemsList) { this.foodItemsList = foodItemsList; }
-
-    public Integer getCustomerId() { return customerId; }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
 
     public Integer getFoodId() {
         return foodId;

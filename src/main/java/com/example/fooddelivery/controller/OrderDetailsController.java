@@ -16,11 +16,6 @@ public class OrderDetailsController {
     @Autowired
    private OrderDetailService orderDetailService;
 
-    @GetMapping(value="/orderdetail")
-    public List<OrderDetailsResponse> getOrderDetails()
-    {
-        return orderDetailService.fetchOrderDetail();
-    }
 
     @GetMapping(value="/orderdetail/{orderId}")
     public OrderDetailsResponse getOrderDetailByIds(@PathVariable("orderId") Integer orderId){

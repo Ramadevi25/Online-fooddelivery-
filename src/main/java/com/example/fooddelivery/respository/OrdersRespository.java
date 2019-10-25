@@ -15,4 +15,6 @@ public interface OrdersRespository extends JpaRepository<Orders,Integer> {
             nativeQuery=true
     )
     public List<Orders> findByTotalPrice(Integer customerId,Integer totalprice);
+
+  //public  Orders findByOrderId(Integer id);
 }

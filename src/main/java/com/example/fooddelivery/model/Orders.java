@@ -1,11 +1,10 @@
 package com.example.fooddelivery.model;
 
-import org.hibernate.criterion.Order;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.util.List;
 
 @Entity
 @Table(name="orders")
@@ -14,11 +13,30 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="customer_id")
-    private Integer customerId;
+   // @Column(name="customer_id")
+   // private Customer customerId;
 
     @Column(name="date")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
+
+    @Column(name="time")
+    private Time time;
+
+    @Column(name="totalprice")
+    private Double totalprice;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name="customer_id",referencedColumnName = "id")
+    private Customer customer;
 
     public Time getTime() {
         return time;
@@ -28,26 +46,12 @@ public class Orders {
         this.time = time;
     }
 
-    @Column(name="time")
-    private Time time;
-
-    @Column(name="totalprice")
-    private Double totalprice;
-
     public Double getTotalprice() {
         return totalprice;
     }
 
     public void setTotalprice(Double totalprice) {
         this.totalprice = totalprice;
-    }
-
-   public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
     }
 
     public Integer getId() {

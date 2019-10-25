@@ -17,18 +17,6 @@ public class OrderDetailService {
     @Autowired
    private  OrderDetailsRespository orderDetailsRespository;
 
-    public List<OrderDetailsResponse> fetchOrderDetail() {
-        List<Orderdetails> orderDetails= orderDetailsRespository.findAll();
-        List<OrderDetailsResponse> orderDetailsResponses=new ArrayList<>();
-
-        orderDetails.forEach(orderdetails -> {
-            OrderDetailsResponse orderDetailsResponse=new OrderDetailsResponse();
-            orderDetailsResponse.setOrderId(orderdetails.getOrderId());
-            orderDetailsResponses.add(orderDetailsResponse);
-
-        });
-        return orderDetailsResponses;
-    }
 
     public OrderDetailsResponse fetchOrderDetailById(Integer id)
     {

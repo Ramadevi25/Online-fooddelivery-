@@ -15,7 +15,7 @@ public class FoodItemsController {
     @Autowired
     private FoodItemsService foodItemsService;
 
-    @GetMapping("/")
+    @GetMapping("/fooditems")
     public List<FoodItemsResponse> getFooditems() {
         return foodItemsService.fetchFoodItems();
     }

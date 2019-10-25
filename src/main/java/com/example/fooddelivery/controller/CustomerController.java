@@ -27,28 +27,21 @@ public class CustomerController {
     @Autowired
     private OrdersService ordersService;
 
-    @GetMapping()
+    @GetMapping("")
     public List<CustomerDetailResponse> getAllCustomerDetails() {
         return customerservice.fetchCustomersDetails();
     }
 
-    //get customerdetail by customerid
-    @GetMapping(value="/customerId/{customerId}")
-    public CustomerDetailResponse getCustomerById(@PathVariable("customerId") Integer customerId)
-    {
-        return customerservice.fetchOrder(customerId);
-    }
 
-    //get orders made by customer using customerid
     @GetMapping(value="/{customerId}")
-    public CustomerDetailResponse getOrderDetail(@PathVariable("customerId") Integer id) {
+    public CustomerDetailResponse getCustomerById(@PathVariable("customerId") Integer id) {
         return customerservice.fetchCustomerById(id);
     }
 
-    //for particular customerid orderdetail is displayed
+    //for particular customerid orders is displayed
     @GetMapping(value="orderdetail/{customerId}")
-    public CustomerResponse getCustomerOrderDetail(@PathVariable("customerId") Integer customerId) {
-        return customerservice.fetchCustomerOrderDetails(customerId);
+    public CustomerResponse getCustomerOrders(@PathVariable("customerId") Integer customerId) {
+        return customerservice.fetchCustomerOrders(customerId);
     }
 
     @PostMapping(value="/addCustomer")
@@ -60,7 +53,6 @@ public class CustomerController {
     public void updateCustomer(@RequestBody CustomerRequest customerRequest) {
         customerservice.updateCustomerById(customerRequest);
     }
-
     @PostMapping("/{username}/{password}")
     public String verifyCustomer(@PathVariable("username")String username,@PathVariable("password")String password)
     {

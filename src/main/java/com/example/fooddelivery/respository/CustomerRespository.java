@@ -12,8 +12,8 @@ public interface CustomerRespository extends JpaRepository<Customer,Integer> {
     //@Query("SELECT t FROM customers t WHERE t.customer_id = 'customerId'")
     //public List<Customer> findById();
 
-    @Query(value = "SELECT * FROM customers t WHERE t.customer_id = 'customerId'",nativeQuery=true)
-    public List<Customer> findById();
+    //@Query(value = "SELECT * FROM customers t WHERE t.customer_id = 'customerId'",nativeQuery=true)
+    //public List<Customer> findById();
 
     Customer findByUsername(String username);
 }

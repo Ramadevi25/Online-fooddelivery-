@@ -31,16 +31,17 @@ public class RestaurantController {
     public List<FoodItemsResponse> foodItems(@PathVariable("restaurantId") Integer id) {
         return restraurantService.fooddetails(id);
     }
+    @PostMapping("/addrestaurant")
     public void addRestaurantDetails(@RequestBody RestraurantResponse restraurantResponse)
     {
         restraurantService.addRestaurantDetail(restraurantResponse);
     }
-
     @DeleteMapping("/{restaurantId}")
     public void removeRestaurant(@PathVariable("restaurantId")Integer id)
     {
         restraurantService.deleteRestaurantId(id);
     }
+
 
 
 

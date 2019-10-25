@@ -1,12 +1,14 @@
 package com.example.fooddelivery.controller;
 
+import com.example.fooddelivery.request.CartRequest;
+import com.example.fooddelivery.request.FoodItemsRequest;
 import com.example.fooddelivery.response.CartResponse;
 import com.example.fooddelivery.response.CustomerResponse;
+import com.example.fooddelivery.respository.CartRepository;
 import com.example.fooddelivery.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class CartController {
@@ -28,6 +30,14 @@ public class CartController {
     {
         cartService.deleteFoodItem(id);
     }
+    @PostMapping("/insertcartdetails")
+    public ResponseEntity<String> insertCartitems(@RequestBody CartRequest cartRequest)
+    {
+        return cartService.addCarditems(cartRequest);
+    }
+
+
+
 
 
 }
